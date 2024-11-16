@@ -7,15 +7,15 @@ def main(page: ft.Page):
 
     logo = ft.Image(
       src=f"assets/logo1.png",
-      width=20,height=10,
+      height=150,
     )
 
     #fixed=1
     appbarra = ft.AppBar(
         leading=logo,
-        leading_width=40,
+        leading_width=150,
         title=ft.Text("Reportes"),
-        center_title=False,
+        center_title=True,
         bgcolor="",
         actions=[
             ft.IconButton(ft.icons.MENU),
@@ -58,4 +58,4 @@ def main(page: ft.Page):
     page.go(page.route)
 
 
-ft.app(main)
+ft.app(main, assets_dir="assets")
