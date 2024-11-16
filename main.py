@@ -28,8 +28,8 @@ def users(page):
 
   ############# BARRA IZQUIERDA ###########
   img_pfp = ft.Image(
-    src=f"assets/pfp.jpg",
-    width=80, height=80,
+    src=f"assets/manu.jpg",
+    width=70, height=70,
     fit=ft.ImageFit.CONTAIN,
     repeat=ft.ImageRepeat.NO_REPEAT,
     border_radius=ft.border_radius.all(100),
@@ -42,6 +42,10 @@ def users(page):
     alignment=ft.MainAxisAlignment.CENTER,
   )
 
+  def cambio_index(e): 
+    c = e.control.selected_index
+
+
   rail = ft.NavigationRail(
     selected_index=0,
     label_type=ft.NavigationRailLabelType.ALL,
@@ -52,20 +56,25 @@ def users(page):
     group_alignment=-0.9,
     destinations=[
       ft.NavigationRailDestination(
-        icon=ft.icons.FAVORITE_BORDER, selected_icon=ft.icons.FAVORITE, label="usuarios"
+        icon=ft.icons.PEOPLE_ALT_OUTLINED, selected_icon=ft.icons.PEOPLE_ALT_ROUNDED, 
+        label="Marcajes",
       ),
       ft.NavigationRailDestination(
-        icon_content=ft.Icon(ft.icons.BOOKMARK_BORDER),
-        selected_icon_content=ft.Icon(ft.icons.BOOKMARK),
-        label="reportes",
+        icon=ft.icons.ADMIN_PANEL_SETTINGS_OUTLINED, selected_icon=ft.icons.ADMIN_PANEL_SETTINGS, 
+        label="Usuarios",
       ),
       ft.NavigationRailDestination(
-        icon=ft.icons.SETTINGS_OUTLINED,
-        selected_icon_content=ft.Icon(ft.icons.SETTINGS),
-        label_content=ft.Text("nose"),
+        icon=ft.icons.LOCAL_PRINT_SHOP_OUTLINED,
+        selected_icon=ft.icons.PRINT,
+        label="Reportes",
+      ),
+      ft.NavigationRailDestination(
+        icon=ft.icons.FINGERPRINT_OUTLINED,
+        selected_icon=ft.icons.FINGERPRINT,
+        label="Editar",
       ),
     ],
-    on_change=lambda e: print("Selected destination:", e.control.selected_index),
+    on_change=cambio_index,
   )
 
   ################### FIN BARRA IZQUIERDA ######################
@@ -145,11 +154,23 @@ def users(page):
 
   ################### FIN CONTENIDO DE ASISTENCIA ##############
 
-  content = ft.Row([
-      rail,
+  content1 = ft.Row([
+    rail,
+    ft.VerticalDivider(width=1),
+    ft.Column([
+      data_table,
+    ], 
+    alignment=ft.MainAxisAlignment.START, expand=True),
+  ],
+  expand=True,
+  )
+
+  content2 = ft.Row([
+    rail,
       ft.VerticalDivider(width=1),
       ft.Column([
-        data_table,
+        #data_table,
+        ft.Text("HOLAA 2"),
         ], 
         alignment=ft.MainAxisAlignment.START, expand=True),
       ],
@@ -157,7 +178,7 @@ def users(page):
   )
 
   contenedor = ft.Container(
-      content = content,
+      content = content2,
       image=ft.DecorationImage(
         src="assets/wall.jpg",
         fit = "COVER",
