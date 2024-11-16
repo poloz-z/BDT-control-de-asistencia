@@ -1,5 +1,8 @@
 import flet as ft
 import datetime
+import os
+
+directorio = os.getcwd()+"/BDT-control-de-asistencia/"
 
 def users(page):
 
@@ -28,7 +31,7 @@ def users(page):
 
   ############# BARRA IZQUIERDA ###########
   img_pfp = ft.Image(
-    src=f"assets/manu.jpg",
+    src=directorio+"assets/manu.jpg",
     width=70, height=70,
     fit=ft.ImageFit.CONTAIN,
     repeat=ft.ImageRepeat.NO_REPEAT,
@@ -154,33 +157,29 @@ def users(page):
 
   ################### FIN CONTENIDO DE ASISTENCIA ##############
 
-  content1 = ft.Row([
-    rail,
-    ft.VerticalDivider(width=1),
-    ft.Column([
-      data_table,
-    ], 
-    alignment=ft.MainAxisAlignment.START, expand=True),
-  ],
-  expand=True,
-  )
-
-  content2 = ft.Row([
-    rail,
-      ft.VerticalDivider(width=1),
-      ft.Column([
-        #data_table,
-        ft.Text("HOLAA 2"),
-        ], 
-        alignment=ft.MainAxisAlignment.START, expand=True),
-      ],
-    expand=True,
+  content0 = ft.Row(
+    [
+      rail,
+        ft.Row([
+          ft.Column(
+            [
+              data_table,
+            ],
+            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+          ),
+        ],
+        alignment=ft.MainAxisAlignment.CENTER,
+        expand=True
+      )
+    ],
+    alignment=ft.MainAxisAlignment.START,
+    expand=True
   )
 
   contenedor = ft.Container(
-      content = content2,
+      content = content0,
       image=ft.DecorationImage(
-        src="assets/wall.jpg",
+        src=directorio+"assets/wall.jpg",
         fit = "COVER",
       ),  
       expand=True,

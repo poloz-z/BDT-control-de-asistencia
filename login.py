@@ -1,10 +1,13 @@
 import flet as ft
+import os
+
+directorio = os.getcwd()+"/BDT-control-de-asistencia"
 
 def login(page):
 
   # logo image parametros
   logo = ft.Image(
-    src=f"assets/logo1.png",
+    src=directorio+"/assets/logo1.png",
     width=250,height=150,
   )
 
@@ -49,7 +52,7 @@ def login(page):
   contenedor = ft.Container(
       content = login_content,
       image=ft.DecorationImage(
-        src="assets/wall.jpg",
+        src=directorio+"/assets/wall.jpg",
         fit = "COVER",
       ),  
       expand=True,

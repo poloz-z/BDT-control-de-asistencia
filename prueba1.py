@@ -1,12 +1,15 @@
 import flet as ft
+import os
 from login import login
 from main import users as us
+
+directorio = os.getcwd()+"/BDT-control-de-asistencia/"
 
 def main(page: ft.Page):
     page.title = "Asistencia"
 
     logo = ft.Image(
-      src=f"assets/logo1.png",
+      src=directorio+"assets/logo1.png",
       height=150,
     )
 
@@ -58,4 +61,4 @@ def main(page: ft.Page):
     page.go(page.route)
 
 
-ft.app(main, assets_dir="assets")
+ft.app(main, assets_dir=directorio)
