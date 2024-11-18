@@ -1,6 +1,7 @@
 import flet as ft
 import datetime
 import os
+from barra_izq import barra_izq as rail
 
 directorio = os.getcwd()+"/BDT-control-de-asistencia/"
 
@@ -28,59 +29,26 @@ def users(page):
 
   ############# FIN CoLORES, TITULOS, CARGAR DE RECURSOS ########
 
+  ############# APP BARRA #######################################
 
-  ############# BARRA IZQUIERDA ###########
-  img_pfp = ft.Image(
-    src=directorio+"assets/manu.jpg",
-    width=70, height=70,
-    fit=ft.ImageFit.CONTAIN,
-    repeat=ft.ImageRepeat.NO_REPEAT,
-    border_radius=ft.border_radius.all(100),
+  logo = ft.Image(
+    src=directorio+"assets/logo1.png",
+    height=150,
   )
 
-  p_pfp = ft.Column(
-    [
-      img_pfp, 
+  barra = ft.AppBar(
+    leading=logo,
+    leading_width=150,
+    title=ft.Text("Reportes"),
+    center_title=True,
+    bgcolor="",
+    actions=[
+      ft.IconButton(ft.icons.MENU),
+      ft.IconButton(ft.icons.EXIT_TO_APP,on_click=lambda _: page.go("/")),
     ],
-    alignment=ft.MainAxisAlignment.CENTER,
   )
 
-  def cambio_index(e): 
-    c = e.control.selected_index
-
-
-  rail = ft.NavigationRail(
-    selected_index=0,
-    label_type=ft.NavigationRailLabelType.ALL,
-    #extended=True,
-    min_width=100,
-    min_extended_width=400,
-    leading=p_pfp,
-    group_alignment=-0.9,
-    destinations=[
-      ft.NavigationRailDestination(
-        icon=ft.icons.PEOPLE_ALT_OUTLINED, selected_icon=ft.icons.PEOPLE_ALT_ROUNDED, 
-        label="Marcajes",
-      ),
-      ft.NavigationRailDestination(
-        icon=ft.icons.ADMIN_PANEL_SETTINGS_OUTLINED, selected_icon=ft.icons.ADMIN_PANEL_SETTINGS, 
-        label="Usuarios",
-      ),
-      ft.NavigationRailDestination(
-        icon=ft.icons.LOCAL_PRINT_SHOP_OUTLINED,
-        selected_icon=ft.icons.PRINT,
-        label="Reportes",
-      ),
-      ft.NavigationRailDestination(
-        icon=ft.icons.FINGERPRINT_OUTLINED,
-        selected_icon=ft.icons.FINGERPRINT,
-        label="Editar",
-      ),
-    ],
-    on_change=cambio_index,
-  )
-
-  ################### FIN BARRA IZQUIERDA ######################
+  ############# FIN APP BARRA ###################################
 
   ######## alert dialog salida #########
   dlg_modal = ft.AlertDialog(
@@ -88,7 +56,7 @@ def users(page):
     title=ft.Text("alerta dialogo"),
     content=ft.Text("cerrar la session?"),
     actions=[
-      ft.TextButton("no", on_click=lambda _:page.close(dlg_modal)),
+      ft.TextButton("no", on_click=lambda _: page.close(dlg_modal)),
       ft.TextButton("si", on_click=lambda _: page.go("/")),
     ],
     actions_alignment=ft.MainAxisAlignment.END,
@@ -101,21 +69,6 @@ def users(page):
 
   def open_salida(e): 
     page.open(dlg_modal)
-
-  ################# BARRA DE TITULO fix=1###########################
-  appbarra = ft.AppBar(
-    leading=ft.Icon(ft.icons.PEOPLE_ALT_ROUNDED),
-    leading_width=40,
-    title=ft.Text("Sistema Control de Asistencia"),
-    center_title=False,
-    #bgcolor=ft.colors.with_opacity(1, '#0d1117'),
-    actions=[
-      ft.Icon(ft.icons.DARK_MODE,),
-      ft.IconButton(ft.icons.EXIT_TO_APP,on_click=open_salida),
-    ],
-  )
-  ################### FIN BARRA DE TITULO ######################
-
 
 
   ################### CONTENIDO DE ASISTENCIA ##################
@@ -159,7 +112,7 @@ def users(page):
 
   content0 = ft.Row(
     [
-      rail,
+      rail(page),
         ft.Row([
           ft.Column(
             [

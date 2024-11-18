@@ -33,6 +33,11 @@ def login(page):
                  bgcolor = ft.colors.BLUE, color = ft.colors.WHITE,
                 ),
              )
+  ingresar1 = ft.ElevatedButton("Registrarse", on_click=loggin, style=ft.ButtonStyle(
+        shape=ft.RoundedRectangleBorder(radius=5),
+        elevation=5, bgcolor = "blue", color = "white",
+        padding=ft.Padding(left=120, right=110, top=10, bottom=10)
+  ))
 
   login_content = ft.Row(
     [
@@ -40,7 +45,7 @@ def login(page):
         [
           logo,
           user, passw, 
-          ingresar,
+          ingresar1,
         ],
         alignment=ft.MainAxisAlignment.CENTER,
       ),
@@ -48,16 +53,15 @@ def login(page):
     alignment=ft.MainAxisAlignment.CENTER,
   )
 
-  #page.add(
   contenedor = ft.Container(
       content = login_content,
       image=ft.DecorationImage(
         src=directorio+"/assets/wall.jpg",
         fit = "COVER",
       ),  
-      expand=True,
-    )
-  #)
+    expand=True,
+  )
+
   return contenedor
 
 if __name__ == "__main__":
