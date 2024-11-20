@@ -1,5 +1,6 @@
 import flet as ft
 import os
+import data_base as db
 
 directorio = os.getcwd()+"/BDT-control-de-asistencia"
 
@@ -13,7 +14,7 @@ def login(page):
 
   #verificacion
   def loggin(e):
-    if (user.value == "admin") and (passw.value == "admin"):  
+    if (user.value == db.consulta_user()) and (passw.value == db.consulta.passw):  
       user.helper_text = "Todo bien"
       passw.helper_text = "Todo bien"
       page.go("/store"),

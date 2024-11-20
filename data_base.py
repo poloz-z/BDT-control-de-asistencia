@@ -1,33 +1,38 @@
 import sqlite3 as sql
-import datetime
+import datetime, os
+import sqlite3 as sql
 
-def crear_bd():
-  connect = sql.connect("data_base.db")
-  cursor = connect.cursor()
+directorio = os.getcwd()+"/BDT-control-de-asistencia/"
+
+conn = sql.connect(directorio+"assets/data_base.db")
+cursor = conn.cursor()
+
+def agregar_usuario(user,nombre,cedula,clave,tipo):
+
+  if tipo == True:
+    tipo = 1
+  else:
+    tipo = 0
 
   cursor.execute("""
-  	CREATE TABLE IF NOT EXISTS operadores (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      user VARCHAR(30),
-      nombre VARCHAR(25),
-      cedula INT(10),
-      clave VARCHAR(25),
-  	""")
-
-  cursor.execute("""
-    CREATE TABLE IF NOT EXISTS personal (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      nombre VARCHAR(25),
-      cedula INT(10),
-      rol VARCHAR(25),
-      fecha DATE,
-      hora_e TIME,
-      hora_s TIME,
-   	""")
-
-  connect.commit()
-  connect.close()
-
-def agregar_usuario():
-  pass
+    INSERT INTO operadores
+      (user, nombre, cedula, clave, tipo)
+    VALUES 
+      (?, ?, ?, ?, ?)
+    """,(user,nombre,cedula,clave,tipo))
+  conn.commit()
+  cursor.close()
+  conn.close()
   #test....
+
+def consulta_user():
+  cursor.execute("SELECT * FROM operadores")
+  consulta = cursor.fetchall()
+  for c in consulta:
+    return c[1]
+
+def consulta_passw():
+  cursor.execute("SELECT * FROM operadores")
+  consulta = cursor.fetchall()
+  for c in consulta:
+    return c[4]

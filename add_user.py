@@ -1,6 +1,7 @@
 import flet as ft
 import os
 from barra_izq import barra_izq as rail
+import data_base
 
 directorio = os.getcwd()+"/BDT-control-de-asistencia/"
 
@@ -8,7 +9,7 @@ def add_u(page):
 
     logo = ft.Image(
       src=directorio+"/assets/logo1.png",
-      width=250,height=150,
+      width=210,height=110,
     )
 
     image1 = ft.Image(
@@ -20,9 +21,26 @@ def add_u(page):
       border_radius=ft.border_radius.all(10),
     )
 
-    def submit_handler(e):
-        pass
-        # ... (mismo código para procesar el formulario)
+    def registrar(e):
+      if user.value == "" or nombre.value == "" or cedula.value == "" or passw.value == "":
+        user.error_text = "Ingrese un valor"
+        nombre.error_text = "Ingrese un valor"
+        cedula.error_text = "Ingrese una valor"
+        passw.error_text = "Ingrese un valor"
+        page.update()
+        if len(cedula.value) != 8:
+          cedula.error_text = "8 digitos permitidos"
+          page.update()
+
+      else:
+        data_base.agregar_usuario(user.value, nombre.value, cedula.value, passw.value, c.value)
+        user.value = ""
+        nombre.value = ""
+        cedula.value = ""
+        passw.value = ""
+        c.value = False
+        page.update()
+
 
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
@@ -36,22 +54,19 @@ def add_u(page):
     cedula = ft.TextField(label="00000000") #width=300)
     passw_t = ft.Text("Contraseña:")
     passw = ft.TextField(label="12345678", password=True) #width=300)
+    c = ft.Checkbox(label="Usuario administrador?")
 
     # Botón personalizado
-    submit_button = ft.ElevatedButton("Registrarse", on_click=submit_handler, style=ft.ButtonStyle(
+    submit_button = ft.ElevatedButton("Registrarse", on_click=registrar, style=ft.ButtonStyle(
         shape=ft.RoundedRectangleBorder(radius=5),
         bgcolor = ft.colors.BLACK, color = ft.colors.WHITE,
         elevation=5,
         padding=ft.Padding(left=20, right=20, top=10, bottom=10)
     ))
 
-    add_u_content = ft.Column(
-        [
-            logo,
-            titulo,
-            user_t, user, nombre_t, nombre, cedula_t, cedula, passw_t, passw, 
-            submit_button,
-        ])
+    bottoms = [logo,titulo,user_t,user,nombre_t,nombre,cedula_t,cedula,passw_t,passw,c,submit_button]
+    
+    add_u_content = ft.Column(bottoms)
 
     content0 = ft.Row(
       [

@@ -34,8 +34,6 @@ def main(page: ft.Page):
                 "/",
                 [
                     login(page), 
-                    #ft.AppBar(title=ft.Text("Marcajes"), bgcolor=ft.colors.SURFACE_VARIANT),
-                    #ft.ElevatedButton("Reportes", on_click=lambda _: page.go("/store")),
                 ],
             )
         )
@@ -45,8 +43,6 @@ def main(page: ft.Page):
                     "/store",
                     [
                         appbarra, us(page),
-                        #ft.AppBar(title=ft.Text("Reportes"), bgcolor=ft.colors.SURFACE_VARIANT),
-                        #ft.ElevatedButton("Marcajes", on_click=lambda _: page.go("/")),
                     ],
                 )
             )
@@ -56,8 +52,6 @@ def main(page: ft.Page):
                     "/add_u",
                     [
                         appbarra, add_u(page),
-                        #ft.AppBar(title=ft.Text("Reportes"), bgcolor=ft.colors.SURFACE_VARIANT),
-                        #ft.ElevatedButton("Marcajes", on_click=lambda _: page.go("/")),
                     ],
                 )
             )

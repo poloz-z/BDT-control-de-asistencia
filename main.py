@@ -50,26 +50,6 @@ def users(page):
 
   ############# FIN APP BARRA ###################################
 
-  ######## alert dialog salida #########
-  dlg_modal = ft.AlertDialog(
-    modal=True,
-    title=ft.Text("alerta dialogo"),
-    content=ft.Text("cerrar la session?"),
-    actions=[
-      ft.TextButton("no", on_click=lambda _: page.close(dlg_modal)),
-      ft.TextButton("si", on_click=lambda _: page.go("/")),
-    ],
-    actions_alignment=ft.MainAxisAlignment.END,
-    on_dismiss=lambda e: page.add(
-      ft.Text("Modal dialog dismissed"),
-    ),
-  )
-
-  ##### end alert dialog salida 
-
-  def open_salida(e): 
-    page.open(dlg_modal)
-
 
   ################### CONTENIDO DE ASISTENCIA ##################
   def calcular_horas(entrada, salida):
