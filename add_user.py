@@ -44,16 +44,17 @@ def add_u(page):
 
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
+    gc = ft.TextStyle(color="#aaaaaa")
     # Estilos CSS personalizados
     titulo = ft.Text("Registro",size=35,weight=ft.FontWeight.BOLD)
     user_t = ft.Text("Nombre de usuario:")
-    user = ft.TextField(label="jorge.polo@bdt.com.ve") #width=300)
+    user = ft.TextField(label="Usuario",hint_text="jorge.polo@bdt.com.ve",hint_style=gc) #width=300)
     nombre_t = ft.Text("Nombre personal:")
-    nombre = ft.TextField(label="Jorge Polo") #width=300)
+    nombre = ft.TextField(label="Nombre",hint_text="Jorge Polo",hint_style=gc) #width=300)
     cedula_t = ft.Text("Numero de cedula:")
-    cedula = ft.TextField(label="00000000") #width=300)
+    cedula = ft.TextField(label="Cedula",hint_text="00000000",hint_style=gc) #width=300)
     passw_t = ft.Text("Contraseña:")
-    passw = ft.TextField(label="12345678", password=True) #width=300)
+    passw = ft.TextField(label="Contraseña",hint_text="12345678",hint_style=gc,password=True) #width=300)
     c = ft.Checkbox(label="Usuario administrador?")
 
     # Botón personalizado

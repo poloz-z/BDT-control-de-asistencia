@@ -34,7 +34,7 @@ def login(page):
                  bgcolor = ft.colors.BLUE, color = ft.colors.WHITE,
                 ),
              )
-  ingresar1 = ft.ElevatedButton("Registrarse", on_click=loggin, style=ft.ButtonStyle(
+  ingresar1 = ft.ElevatedButton("Ingresar", on_click=loggin, style=ft.ButtonStyle(
         shape=ft.RoundedRectangleBorder(radius=5),
         elevation=5, bgcolor = "blue", color = "white",
         padding=ft.Padding(left=120, right=110, top=10, bottom=10)

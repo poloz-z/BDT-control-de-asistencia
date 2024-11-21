@@ -9,25 +9,13 @@ def users(page):
 
   ######### NUEVO DISEÑO (IMPLEMENTAR BASE DE DATOS DE MANUEL) ###############
   empleados = [
-    {'fecha':datetime.date.today(), 'nombre': 'Jorge Polo', 'entrada': datetime.time(8, 0), 
+    {'id':1,'fecha':datetime.date.today(), 'nombre': 'Jorge Polo','cedula':31539532, 'entrada': datetime.time(8, 0), 
      'salida': datetime.time(17, 0), 'mentrada': datetime.time(7, 58), 'msalida': datetime.datetime.now()},
 
-    {'fecha':datetime.date.today(), 'nombre': 'Jorge Eliecer', 'entrada': datetime.time(9, 0), 
+    {'id':2,'fecha':datetime.date.today(), 'nombre': 'Freddy Lopez','cedula':25213445,'entrada': datetime.time(9, 0), 
      'salida': datetime.time(18, 0), 'mentrada': datetime.time(8, 46), 'msalida': datetime.datetime.now()},
     # ...
   ]
-
-  ############ COLORES, TITULOS, CARGAR DE RECURSOS ###########
-
-  page.title = "Control de Asistencia"
-  page.fonts = {
-    "dosis":"assets/dosis.ttf",
-    "play":"assets/play.ttf",
-    "dacing":"assets/dacing.ttf",
-    "umb":"assets/umb.ttf",
-  }
-
-  ############# FIN CoLORES, TITULOS, CARGAR DE RECURSOS ########
 
   ############# APP BARRA #######################################
 
@@ -64,26 +52,29 @@ def users(page):
 
     return ft.DataRow(
       cells=[
-        ft.DataCell(ft.Text(empleado['fecha'].strftime("%d/%m/%Y"))),
+        ft.DataCell(ft.Text(empleado['id'])),
         ft.DataCell(ft.Text(empleado['nombre'])),
-        ft.DataCell(ft.Text(empleado['entrada'].strftime("%H:%M"))),
-        ft.DataCell(ft.Text(empleado['salida'].strftime("%H:%M"))),
+        ft.DataCell(ft.Text(empleado['cedula'])),
+        #ft.DataCell(ft.Text(empleado['entrada'].strftime("%H:%M"))),
+        #ft.DataCell(ft.Text(empleado['salida'].strftime("%H:%M"))),
         ft.DataCell(ft.ProgressBar(value=0.8, tooltip = "5.8 Horas")),
         ft.DataCell(ft.Text(empleado['mentrada'].strftime("%H:%M"))),
-        ft.DataCell(ft.Text(empleado['msalida'].strftime("%H:%M")))
+        ft.DataCell(ft.Text(empleado['msalida'].strftime("%H:%M"))),
+        ft.DataCell(ft.Text(empleado['fecha'].strftime("%d/%m/%Y"))),
       ]
     )
 
     # Crear la tabla
   data_table = ft.DataTable(
     columns=[
-      ft.DataColumn(ft.Text('Fecha')),
-      ft.DataColumn(ft.Text('Nombre')),
+      ft.DataColumn(ft.Text('ID')),
+      ft.DataColumn(ft.Text('Nombre y Apellido')),
+      ft.DataColumn(ft.Text('Cedula    ')),
+      ft.DataColumn(ft.Text('Horas Trabajadas')),
+      #ft.DataColumn(ft.Text('Salida')),
       ft.DataColumn(ft.Text('Entrada')),
       ft.DataColumn(ft.Text('Salida')),
-      ft.DataColumn(ft.Text('Horas Trabajadas')),
-      ft.DataColumn(ft.Text('M - Entrada')),
-      ft.DataColumn(ft.Text('M - Salida'))
+      ft.DataColumn(ft.Text('Fecha'))
     ],
     rows=[crear_fila(empleado) for empleado in empleados]
   )

@@ -6,9 +6,9 @@ directorio = os.getcwd()+"/BDT-control-de-asistencia/"
 def barra_izq(page):
 
   img_pfp = ft.Image(
-    src=directorio+"assets/manu.jpg",
+    src=directorio+"assets/wall2.png",
     width=70, height=70,
-    fit=ft.ImageFit.CONTAIN,
+    fit=ft.ImageFit.COVER,
     repeat=ft.ImageRepeat.NO_REPEAT,
     border_radius=ft.border_radius.all(100),
   )
@@ -27,6 +27,10 @@ def barra_izq(page):
       page.go("/store")
     if c == 1:
       page.go("/add_u")
+    if c == 2:
+      page.go("/reporte")
+    if c == 3:
+      page.go("/admin")
 
   rail = ft.NavigationRail(
     selected_index=0,
@@ -39,7 +43,7 @@ def barra_izq(page):
     destinations=[
       ft.NavigationRailDestination(
         icon=ft.icons.PEOPLE_ALT_OUTLINED, selected_icon=ft.icons.PEOPLE_ALT_ROUNDED, 
-        label="Marcajes",
+        label="Asistencia",
       ),
       ft.NavigationRailDestination(
         icon=ft.icons.ADMIN_PANEL_SETTINGS_OUTLINED, selected_icon=ft.icons.ADMIN_PANEL_SETTINGS, 
@@ -53,7 +57,7 @@ def barra_izq(page):
       ft.NavigationRailDestination(
         icon=ft.icons.FINGERPRINT_OUTLINED,
         selected_icon=ft.icons.FINGERPRINT,
-        label="Editar",
+        label="Administración",
       ),
     ],
     on_change=cambio_index,
