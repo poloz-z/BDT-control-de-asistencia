@@ -14,7 +14,7 @@ def login(page):
 
   #verificacion
   def loggin(e):
-    if (user.value == db.consulta_user()) and (passw.value == db.consulta.passw):  
+    if (user.value == db.consulta_user()) and (passw.value == db.consulta_passw()):  
       user.helper_text = "Todo bien"
       passw.helper_text = "Todo bien"
       page.go("/store"),
