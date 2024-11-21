@@ -29,14 +29,14 @@ def main(page: ft.Page):
 
     # Estilos CSS personalizados
     titulo = ft.Text("Registro",size=35,weight=ft.FontWeight.BOLD)
-    user_t = ft.Text("Nombre:")
-    user = ft.TextField(label="Jorge Eliecer") #width=300)
-    nombre_t = ft.Text("Apellido:")
-    nombre = ft.TextField(label="Polo Kovaleva") #width=300)
-    cedula_t = ft.Text("Numero de cedula:")
-    cedula = ft.TextField(label="00000000") #width=300)
-    passw_t = ft.Text("Gerencia:")
-    passw = ft.TextField(label="Invitado") # password=True) #width=300)
+    user_t = ft.Text("Nombre y Apellido:")
+    user = ft.TextField(label="Jorge Polo") #width=300)
+    nombre_t = ft.Text("Cedula:")
+    nombre = ft.TextField(label="V-00000000") #width=300)
+    cedula_t = ft.Text("Dependencia:")
+    cedula = ft.TextField(label="Dependencia") #width=300)
+    passw_t = ft.Text("Cargo:")
+    passw = ft.TextField(label="Cargo") # password=True) #width=300)
 
     # Botón personalizado
     submit_button = ft.ElevatedButton("Registrarse", on_click=submit_handler, style=ft.ButtonStyle(
@@ -49,13 +49,13 @@ def main(page: ft.Page):
 
 
     # Campos de texto para el PIN y mensajes
-    pin_field = ft.TextField(label="Ingrese su PIN", hint_text="Ej: 1234")
+    pin_field = ft.TextField(label="Ingrese su Cedula", hint_text="Ej: 31539532")
     message = ft.Text()
 
     def check_pin(e):
         # Aquí iría la lógica para verificar el PIN contra una base de datos
         # Por ahora, simulamos una verificación básica
-        if pin_field.value == "1234":
+        if pin_field.value == "31539532":
             # Registrar hora de entrada/salida
             current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             message.value = f"Hora de {('entrada' if '' == '' else 'salida')}: {current_time}"
@@ -65,14 +65,17 @@ def main(page: ft.Page):
         page.update()
 
     # Botón para marcar entrada/salida
-    button_pin = ft.ElevatedButton(text="Marcar", on_click=check_pin)
+    button_pin = ft.ElevatedButton(text="Marcar", on_click=check_pin,style=ft.ButtonStyle(
+        shape=ft.RoundedRectangleBorder(radius=5),
+        bgcolor = ft.colors.BLACK, color = ft.colors.WHITE,
+        elevation=5,))
 
     pin_u_content = ft.Column(
         [
             logo,
             pin_field,
             message,
-            button_pin,
+            ft.Row([ft.Text("                          "),button_pin])
         ])
 
 

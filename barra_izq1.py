@@ -39,7 +39,7 @@ def barra_izq(page):
     destinations=[
       ft.NavigationRailDestination(
         icon=ft.icons.PEOPLE_ALT_OUTLINED, selected_icon=ft.icons.PEOPLE_ALT_ROUNDED, 
-        label="Marcajes",
+        label="Asistencia",
       ),
       ft.NavigationRailDestination(
         icon=ft.icons.ADMIN_PANEL_SETTINGS_OUTLINED, selected_icon=ft.icons.ADMIN_PANEL_SETTINGS, 
